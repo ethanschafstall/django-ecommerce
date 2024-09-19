@@ -15,7 +15,7 @@ def register(request):
         return JReponse(405)
     body = json.loads(request.body)
 
-    if "first_name" not in body or "last_name" not in body:  
+    if "first_name" not in body or "last_name" not in body or "email" not in body or "password" not in body:  
         return JReponse(400)
 
     user = User(first_name=body["first_name"], last_name=body["last_name"])
