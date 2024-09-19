@@ -9,15 +9,16 @@ def index(request):
 @csrf_exempt
 def register(request):
     
-    if request.method != 'POST' or len(request.body) == 0:
-        return JReponse(400)
-
+    if request.method != 'POST':
+        return JReponse(405)
+    if len(request.body) == 0:
+        return JReponse(405)
     body = json.loads(request.body)
 
-    if "name" not in body or "surname" not in body:  
+    if "first_name" not in body or "last_name" not in body:  
         return JReponse(400)
 
-    user = User(first_name=body["name"], last_name=body["surname"])
+    user = User(first_name=body["first_name"], last_name=body["last_name"])
     return JReponse(201, user)
     
 
